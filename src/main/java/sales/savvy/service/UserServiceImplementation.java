@@ -42,7 +42,7 @@ public class UserServiceImplementation implements UserService{
 		if(!u.getPassword().equals(password)){
 			return "Incorrect password";
 		}
-		if(u.getRole().equals("Admin")) {
+		if(u.getRole().equalsIgnoreCase("Admin")) {
 			return "Admin";
 		}
 		return "Customer";
