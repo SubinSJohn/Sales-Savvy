@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import sales.savvy.LoginData;
+import sales.savvy.dto.LoginData;
 import sales.savvy.entity.User;
 import sales.savvy.service.UserService;
 

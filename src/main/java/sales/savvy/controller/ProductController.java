@@ -39,7 +39,7 @@ public class ProductController {
 	}
 	
 	@PostMapping("/updateProduct")
-	public String updateProduct(Product product) {
+	public String updateProduct(@RequestBody Product product) {
 		service.updateProduct(product);
 		return "success";
 	}

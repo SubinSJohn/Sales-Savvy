@@ -1,6 +1,6 @@
 package sales.savvy.service;
 
-import sales.savvy.LoginData;
+import sales.savvy.dto.LoginData;
 import sales.savvy.entity.User;
 
 public interface UserService {

@@ -3,7 +3,7 @@ package sales.savvy.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import sales.savvy.LoginData;
+import sales.savvy.dto.LoginData;
 import sales.savvy.entity.User;
 import sales.savvy.repository.UserRepository;
 
@@ -12,7 +12,7 @@ public class UserServiceImplementation implements UserService{
 	
 	@Autowired
 	UserRepository repo;
-
+ 
 	@Override
 	public String signUp(User user) {
 		String name = user.getUsername();

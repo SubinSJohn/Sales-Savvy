@@ -3,7 +3,6 @@ package sales.savvy.entity;
 import jakarta.persistence.*;
 
 @Entity
-
 public class User {
 	
 	@Id

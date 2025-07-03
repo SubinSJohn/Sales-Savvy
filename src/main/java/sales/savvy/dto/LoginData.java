@@ -1,4 +1,4 @@
-package sales.savvy;
+package sales.savvy.dto;
 
 public class LoginData {
 
