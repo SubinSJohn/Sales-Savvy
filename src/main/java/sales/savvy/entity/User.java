@@ -15,8 +15,11 @@ public class User {
 	private String gender;
 	private String role;
 	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	private Cart cart;
 	
-	public User(Long id, String username, String email, String password, String dob, String gender, String role) {
+	
+	public User(Long id, String username, String email, String password, String dob, String gender, String role, Cart cart) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
@@ -24,9 +27,20 @@ public class User {
 		this.dob = dob;
 		this.gender = gender;
 		this.role = role;
+		this.cart = cart;
 	}
 	
 	
+	public Cart getCart() {
+		return cart;
+	}
+
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+
 	public User() {
 		
 	}
@@ -79,7 +93,10 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", dob="
-				+ dob + ", gender=" + gender + ", role=" + role + "]";
+				+ dob + ", gender=" + gender + ", role=" + role + ", cart=" + cart + "]";
 	}
+
+
+	
 			
 }
