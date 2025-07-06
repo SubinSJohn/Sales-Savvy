@@ -1,11 +1,14 @@
 package sales.savvy.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sales.savvy.dto.CartData;
+import sales.savvy.dto.CartItemDTO;
 import sales.savvy.entity.*;
 import sales.savvy.repository.*;
 
@@ -24,11 +27,11 @@ public class cartServiceImplimentation implements CartService {
 	
 	@Override
 	public String addToCart(CartData data) {
-		Long userId = data.getUserId();
+		String userName = data.getUserName();
 		Long productId = data.getProductId();
 		int quantity = data.getQuantity();
 		
-		User user = userRepo.findById(userId).orElse(null);
+		User user = userRepo.findByusername(userName);
 		if(user == null) return "Typed error: No user found with this ID";
 		
 		Product product = productRepo.findById(productId).orElse(null);
@@ -59,23 +62,26 @@ public class cartServiceImplimentation implements CartService {
 	
 	
 	@Override
-	public Cart viewCart(String name) {
+	public List<CartItemDTO> viewCart(String name) {
 		User user = userRepo.findByusername(name);
 		if(user == null) throw new RuntimeException("User not found");
-		
-		Cart cart = user.getCart();
-		return cart;
+	
+	    Cart cart = user.getCart();
+	    
+	    return cart.getItems().stream()
+	        .map(item -> new CartItemDTO(item.getProduct().getId(), item.getQuantity()))
+	        .collect(Collectors.toList());
 	}
 	
 	
 	
 	@Override
 	public String removeFromCart(CartData data) {
-		Long userId = data.getUserId();
+		String userName = data.getUserName();
 		Long productId = data.getProductId();
 		int quantity = data.getQuantity();
 		
-		User user = userRepo.findById(userId).orElse(null);
+		User user = userRepo.findByusername(userName);
 		if(user == null) return "Typed error: No user found with this ID";
 		
 		Product product = productRepo.findById(productId).orElse(null);
@@ -94,7 +100,7 @@ public class cartServiceImplimentation implements CartService {
 		    if (currentQty > quantity) {
 		        cartItem.setQuantity(currentQty - quantity);
 		        cartItemRepo.save(cartItem);
-		        return "Item quantity decreased";
+		        return "Item removed";
 		    } else {
 		    	
 		    	cart.getItems().remove(cartItem);

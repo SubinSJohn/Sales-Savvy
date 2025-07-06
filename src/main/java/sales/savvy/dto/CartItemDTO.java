@@ -1,17 +1,9 @@
 package sales.savvy.dto;
 
+public class CartItemDTO {
 
-public class CartData {
-	
-	String userName;
-	Long productId;
-	int quantity;
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserId(String userName) {
-		this.userName = userName;
-	}
+	private Long productId;
+    private int quantity;
 	public Long getProductId() {
 		return productId;
 	}
@@ -24,10 +16,17 @@ public class CartData {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	@Override
-	public String toString() {
-		return "CartData [userId=" + userName + ", productId=" + productId + ", quantity=" + quantity + "]";
+	public CartItemDTO(Long productId, int quantity) {
+		this.productId = productId;
+		this.quantity = quantity;
 	}
 	
+	public CartItemDTO() {}
+	@Override
+	public String toString() {
+		return "CartItemDTO [productId=" + productId + ", quantity=" + quantity + "]";
+	}
 	
+
+    
 }
